@@ -1,1 +1,1 @@
-<?php echo "CI/CD test"; ?>
+<?php echo "CI/CD test" ; ?>
