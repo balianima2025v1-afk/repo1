@@ -1,4 +1,4 @@
-name: 🚀 Deploy to Rumahweb Shared Hosting
+name: 🚀 Deploy to Rumahweb via FTP
 
 on:
   push:
@@ -12,12 +12,11 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v3
 
-      - name: 🚀 Deploy via SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      - name: 📂 Sync files to Rumahweb
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ${{ secrets.SSH_HOST }}
-          port: 22
-          username: ${{ secrets.SSH_USER }}
-          password: ${{ secrets.SSH_PASS }}
-          local_path: "./*"
-          remote_path: "/home/trad372X/public_html/"
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          protocol: ftp
+          server-dir: /public_html/
