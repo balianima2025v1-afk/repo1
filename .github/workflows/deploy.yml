@@ -1,0 +1,22 @@
+name: 🚀 Deploy to Rumahweb
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+
+      - name: 📂 Deploy to FTP server
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          protocol: ftp
