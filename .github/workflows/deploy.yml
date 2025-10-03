@@ -1,4 +1,4 @@
-name: 🚀 Deploy to Rumahweb
+name: 🚀 Deploy to VPS Rumahweb
 
 on:
   push:
@@ -6,17 +6,18 @@ on:
       - main
 
 jobs:
-  ftp-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
         uses: actions/checkout@v3
 
-      - name: 📂 Deploy to FTP server
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: 🚀 Deploy files via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
-          protocol: ftp
+          server: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASS }}
+          port: 22
+          local_path: "./*"
+          remote_path: "/var/www/html/demo.tradingsavvy.online/"
