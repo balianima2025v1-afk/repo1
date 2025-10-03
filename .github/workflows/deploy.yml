@@ -1,4 +1,4 @@
-name: 🚀 Deploy to Rumahweb via FTP
+name: 🚀 Deploy to Rumahweb via FTP (Demo Subdomain)
 
 on:
   push:
@@ -12,11 +12,11 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v3
 
-      - name: 📂 Sync files to Rumahweb
+      - name: 📂 Sync files to Rumahweb (demo subdomain)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           protocol: ftp
-          server-dir: /public_html/
+          server-dir: /public_html/demo/
